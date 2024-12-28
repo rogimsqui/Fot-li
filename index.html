@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Sentence Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Sentence Generator</h1>
+    <p>Click the button to generate a random sentence:</p>
+    <h2 id="sentence">-</h2>
+    <button onclick="generateSentence()">Generate</button>
+    <button onclick="shareOnWhatsApp()">Share on WhatsApp</button>
+
+    <script>
+        const set1 = ["Fot-li", "Dale", "Gas"];
+        const set2 = ["tiu", "nen", "màquina", "bèstia"];
+
+        // Generate a random sentence
+        function generateSentence() {
+            const word1 = set1[Math.floor(Math.random() * set1.length)];
+            const word2 = set2[Math.floor(Math.random() * set2.length)];
+            const sentence = `${word1} ${word2}`;
+            document.getElementById("sentence").textContent = sentence;
+            return sentence;
+        }
+
+        // Share on WhatsApp
+        function shareOnWhatsApp() {
+            const sentence = document.getElementById("sentence").textContent;
+            if (sentence === "-") {
+                alert("Generate a sentence first!");
+                return;
+            }
+            const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(sentence)}`;
+            window.open(url, "_blank");
+        }
+    </script>
+</body>
+</html>
